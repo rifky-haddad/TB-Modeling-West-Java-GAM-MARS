@@ -1,0 +1,5 @@
+"Distribution","Data_Type","Test","Test_Statistic","P_Value"
+"Lognormal","Continuous","Kolmogorov-Smirnov",0.1371,0.690726830995662
+"Gamma","Continuous","Kolmogorov-Smirnov",0.1569,0.519174998805853
+"Poisson","Discrete","Chi-Square GOF",Inf,0
+"Negative Binomial","Discrete","Chi-Square GOF",360.3107,2.47861953497633e-62
