@@ -231,21 +231,24 @@ TB-Modeling-West-Java-GAM-MARS/
 │   └── tb_west_java_2024.xlsx
 │
 └── outputs/
-    ├── tb_case_distribution.png
-    ├── nonlinear_relationships.png
-    ├── tb_distribution_west_java.png
+    ├── best_model.csv
+    ├── model_r2_comparison.png
+    ├── model_error_comparison.png
+    ├── model_comparison.csv
+    ├── mars_best_parameters.csv
+    ├── mars_grid_search_results.csv
+    ├── mars_metrics.csv
+    ├── mars_model.rds
+    ├── gam_pspline_effects.png
+    ├── gam_pspline_metrics.csv
+    ├── gam_pspline_model.rds
+    ├── gam_significant_terms.csv
     ├── distribution_gof_results.csv
     ├── glm_aic_comparison.csv
     ├── glm_metrics.csv
-    ├── gam_pspline_effects.png
-    ├── gam_pspline_metrics.csv
-    ├── gam_significant_terms.csv
-    ├── mars_grid_search_results.csv
-    ├── mars_best_parameters.csv
-    ├── mars_metrics.csv
-    ├── model_comparison.csv
-    ├── model_comparison_errors.png
-    └── model_comparison_r2.png
+    ├── tb_distribution_west_java.png
+    ├── nonlinear_relationships.png
+    └── tb_case_distribution.png
 
 ---
 ## Reproducibility
