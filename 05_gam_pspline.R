@@ -41,24 +41,51 @@ data_model <- data_clean %>%
   )
 
 # -----------------------------
-# 4. Fit GAM P-Spline
+# 4. Select basis dimension (k)
 # -----------------------------
-gam_pspline <- gam(
-  Y ~
-    s(X1, bs = "ps") +
-    s(X2, bs = "ps") +
-    s(X3, bs = "ps") +
-    s(X4, bs = "ps") +
-    s(X5, bs = "ps") +
-    s(X6, bs = "ps") +
-    s(X7, bs = "ps") +
-    s(X8, bs = "ps") +
-    s(X9, bs = "ps") +
-    s(X10, bs = "ps"),
-  data = data_model,
-  family = Gamma(link = "log"),
-  method = "REML"
+k_values <- 4:10
+
+gam_models <- list()
+gam_aic <- numeric(length(k_values))
+
+for (i in seq_along(k_values)) {
+
+  k_value <- k_values[i]
+
+  gam_models[[i]] <- gam(
+    Y ~
+      s(X1, bs = "ps", k = k_value) +
+      s(X2, bs = "ps", k = k_value) +
+      s(X3, bs = "ps", k = k_value) +
+      s(X4, bs = "ps", k = k_value) +
+      s(X5, bs = "ps", k = k_value) +
+      s(X6, bs = "ps", k = k_value) +
+      s(X7, bs = "ps", k = k_value) +
+      s(X8, bs = "ps", k = k_value) +
+      s(X9, bs = "ps", k = k_value) +
+      s(X10, bs = "ps", k = k_value),
+    data = data_model,
+    family = Gamma(link = "log"),
+    method = "REML"
+  )
+
+  gam_aic[i] <- AIC(gam_models[[i]])
+}
+
+k_comparison <- data.frame(
+  k = k_values,
+  AIC = gam_aic
 )
+
+cat("\n=== K SELECTION ===\n")
+print(k_comparison)
+
+# Based on the thesis analysis, k = 5 was selected
+selected_k <- 5
+
+gam_pspline <- gam_models[[which(k_values == selected_k)]]
+
+cat("\nSelected k:", selected_k, "\n")
 
 # -----------------------------
 # 5. Model summary
