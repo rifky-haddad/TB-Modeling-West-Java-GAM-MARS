@@ -68,6 +68,8 @@ for (i in seq_len(nrow(mars_grid))) {
     nk = nk_value,
     degree = degree_value,
     minspan = minspan_value,
+    endspan = minspan_value,
+    penalty = 2,
     pmethod = "backward"
   )
 
@@ -108,7 +110,9 @@ for (i in seq_len(nrow(mars_grid))) {
 # -----------------------------
 # 6. Select best model
 # -----------------------------
-best_index <- which.min(mars_results$RMSE)
+best_index <- which.min(
+  sapply(mars_models, function(model) model$gcv)
+)
 
 best_parameters <- mars_results[best_index, ]
 
