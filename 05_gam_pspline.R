@@ -186,3 +186,30 @@ saveRDS(
 )
 
 cat("\nGAM P-Spline modeling completed successfully.\n")
+
+# -----------------------------
+# 12. Plot nonlinear effects
+# -----------------------------
+png(
+  "outputs/gam_pspline_effects.png",
+  width = 1600,
+  height = 1200,
+  res = 180
+)
+
+par(
+  mfrow = c(3, 4),
+  mar = c(4, 4, 3, 1)
+)
+
+plot(
+  gam_pspline,
+  shade = TRUE,
+  seWithMean = TRUE,
+  main = "GAM P-Spline Effects"
+)
+
+dev.off()
+
+cat("\nGenerated output:\n")
+cat("- outputs/gam_pspline_effects.png\n")
